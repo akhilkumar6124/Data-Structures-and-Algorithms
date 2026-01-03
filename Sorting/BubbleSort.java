@@ -1,27 +1,28 @@
 public class BubbleSort {
-    public static void bubbleSort(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length - i - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-            }
-        }
-    }
-    public static void printArray(int[] arr) {
-        for (int value : arr) {
-            System.out.print(value + " ");
-        }
-        System.out.println();
-    }
-    public static void main(String[] args) {
-        int[] arr = {64, 34, 25, 12, 22, 11, 90};
-        System.out.println("Unsorted array:");
-        printArray(arr);
-        bubbleSort(arr);   
-        System.out.println("Sorted array:");
-        printArray(arr);
-    }
+   public static int[] bubbleSort(int arr[]) {
+		int array[] = arr;
+		boolean swapped;
+		for(int i=0;i<array.length;i++) {
+			swapped = false;
+			for(int j=0;j<array.length-i-1;j++) {
+				if(array[j]>array[j+1]) {
+					int temp = array[j];
+					array[j] = array[j+1];
+					array[j+1] = temp;
+					swapped = true;
+				}
+			}
+			if(!swapped) {
+				break;
+			}
+		}
+		return array;
+	}
+	public static void main(String[] args) {
+		int arr[] = {2,4,6,8,1,3,5,7,9};
+		int result[]	 = bubbleSort(arr);
+		for(int var : result) {
+			System.out.print(var+" ");
+		}
+	}
 }
