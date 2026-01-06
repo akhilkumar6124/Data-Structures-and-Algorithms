@@ -4,20 +4,15 @@ public class SinglyLinkedList{
         Node next;
         Node(int data){
             this.data =data;
-            this.next = null;
         }
     }
     public static void main(String[] args) {
-        Node fristNode = new Node(3);
-        Node SecoundNode = new Node(5);
-        Node thridNode = new Node(7);
-        Node fourthNode = new Node(11);
+        Node head = new Node(5);
+        head.next = new Node(8);
+        head.next.next = new Node(11);
+        head.next.next.next = new Node(32);
 
-        fristNode.next = SecoundNode;
-        SecoundNode.next = thridNode;
-        thridNode.next = fourthNode;
-
-        Node currentNode = fristNode;
+        Node currentNode = head;
         while(currentNode!=null){
             System.out.print(currentNode.data+" ");
             currentNode = currentNode.next;
