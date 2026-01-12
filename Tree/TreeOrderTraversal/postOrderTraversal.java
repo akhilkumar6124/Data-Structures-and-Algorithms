@@ -9,12 +9,12 @@ public class postOrderTraversal{
             this.right = null;
         }
     }
-    public static void postOrderTraversal(TreeNode node){
+    public static void PostOrderTraversal(TreeNode node){
         if(node == null){
             return;
         }
-        postOrderTraversal(node.left);
-        postOrderTraversal(node.right);
+        PostOrderTraversal(node.left);
+        PostOrderTraversal(node.right);
         System.out.print(node.data+", ");
     }
     public static void main(String[] args) {
@@ -31,6 +31,6 @@ public class postOrderTraversal{
         nodeA.right = nodeD;
         nodeB.left = nodeE;
         nodeB.right = nodeF;
-        postOrderTraversal(root);
+        PostOrderTraversal(root);
     }
 }
