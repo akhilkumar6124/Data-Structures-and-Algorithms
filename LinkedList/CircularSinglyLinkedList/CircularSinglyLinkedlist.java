@@ -1,33 +1,43 @@
-public class CircularSinglyLinkedlist{
-    static class Node{
+public class CircularSinglyLinkedlist {
+    static class Node {
         int data;
         Node next;
-        Node(int data){
+        Node(int data) {
             this.data = data;
             this.next = null;
         }
     }
-    public static void main(String[] args) {
-        Node fristNode = new Node(4);
-        Node secoundNode = new Node(8);
-        Node thridNode = new Node(12);
-        Node fourthNode = new Node(16);
-
-        fristNode.next = secoundNode;
-        secoundNode.next = thridNode;
-        thridNode.next = fourthNode;
-        fourthNode.next = fristNode;
-
-        Node currentNode = fristNode;
-        Node startNode = fristNode;
-
-        System.out.print(currentNode.data+" ");
-        currentNode = currentNode.next;
-
-        while(currentNode!=startNode){
-            System.out.print(currentNode.data+" ");
-            currentNode = currentNode.next;
+    private Node head;
+    private Node tail;
+    public void insert(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = tail = newNode;
+            newNode.next = head;
+            return;
         }
-        System.out.println("....");
+        tail.next = newNode;
+        newNode.next = head;
+        tail = newNode;
+    }
+    public void display() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        Node current = head;
+        do {
+            System.out.print(current.data + " -> ");
+            current = current.next;
+        } while (current != head);
+        System.out.println("(back to head)");
+    }
+    public static void main(String[] args) {
+        CircularSinglyLinkedlist list = new CircularSinglyLinkedlist();
+        list.insert(4);
+        list.insert(8);
+        list.insert(12);
+        list.insert(16);
+        list.display();
     }
 }

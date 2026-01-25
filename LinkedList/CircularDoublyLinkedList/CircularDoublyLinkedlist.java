@@ -1,54 +1,61 @@
-
-
-public class CircularDoublyLinkedlist{
-    static class Node{
+public class CircularDoublyLinkedlist {
+    static class Node {
         int data;
         Node next;
         Node prev;
-        Node(int data){
+        Node(int data) {
             this.data = data;
-            this.next = null;
-            this.prev = null;
         }
     }
+    private Node head;
+    private Node tail;
+    public void insert(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = tail = newNode;
+            head.next = head;
+            head.prev = head;
+            return;
+        }
+        newNode.prev = tail;
+        newNode.next = head;
+        tail.next = newNode;
+        head.prev = newNode;
+        tail = newNode;
+    }
+    public void displayForward() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        System.out.print("Forward: ");
+        Node current = head;
+        do {
+            System.out.print(current.data + " <-> ");
+            current = current.next;
+        } while (current != head);
+        System.out.println("(back to head)");
+    }
+    public void displayBackward() {
+        if (tail == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        System.out.print("Backward: ");
+        Node current = tail;
+        do {
+            System.out.print(current.data + " <-> ");
+            current = current.prev;
+        } while (current != tail);
+        System.out.println("(back to tail)");
+    }
     public static void main(String[] args) {
-        Node fristNode = new Node(5);
-        Node secoundNode = new Node(10);
-        Node thridNode = new Node(15);
-        Node fourthNode = new Node(20);
-
-        fristNode.next = secoundNode;
-        secoundNode.next = thridNode;
-        thridNode.next = fourthNode;
-        fourthNode.next = fristNode;
-        
-        fristNode.prev = fourthNode;
-        fourthNode.prev = thridNode;
-        thridNode.prev = secoundNode;
-        secoundNode.prev = fristNode;
-
-        System.out.println("Forward");
-        Node CurrentNode = fristNode;
-        Node startNode = fristNode;
-        System.out.print(CurrentNode.data+" ");
-        CurrentNode = CurrentNode.next;
-        while(CurrentNode!=startNode){
-            System.out.print(CurrentNode.data+" ");
-            CurrentNode = CurrentNode.next;
-        }
-        System.out.print("...");
-
-        System.out.println();
-
-        System.out.println("Backword");
-        CurrentNode = fourthNode;
-        startNode = fourthNode;
-        System.out.print(CurrentNode.data+" ");
-        CurrentNode = CurrentNode.prev;
-        while(CurrentNode!=startNode){
-            System.out.print(CurrentNode.data+" ");
-            CurrentNode = CurrentNode.prev;
-        }
-        System.out.print("...");
+        CircularDoublyLinkedlist list = new CircularDoublyLinkedlist();
+        list.insert(5);
+        list.insert(10);
+        list.insert(15);
+        list.insert(20);
+        list.displayForward();
+        list.displayBackward();
     }
 }
